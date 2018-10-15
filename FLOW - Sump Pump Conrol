@@ -1,0 +1,824 @@
+[
+    {
+        "id": "3424c35e.c1ddcc",
+        "type": "tab",
+        "label": "SUMP PUMP CONTROL"
+    },
+    {
+        "id": "7a4b7b95.466a84",
+        "type": "trigger",
+        "z": "3424c35e.c1ddcc",
+        "op1": "POWER FAIL EVENT",
+        "op2": "POWER FAIL GREATER THAN 2 Minutes",
+        "op1type": "val",
+        "op2type": "val",
+        "duration": "2",
+        "extend": false,
+        "units": "min",
+        "reset": "0",
+        "name": "Power Failure Notification",
+        "x": 710,
+        "y": 160,
+        "wires": [
+            [
+                "6048fbdc.91aaf4",
+                "d44f9d37.15d64"
+            ]
+        ]
+    },
+    {
+        "id": "6f15f906.4246f8",
+        "type": "rpi-piface in",
+        "z": "3424c35e.c1ddcc",
+        "name": "S1 - Main Power Status",
+        "pin": "Button S1",
+        "intype": "up",
+        "read": true,
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "500d8e2c.a4c97"
+            ]
+        ]
+    },
+    {
+        "id": "7e9ee75.3a94a18",
+        "type": "rpi-piface out",
+        "z": "3424c35e.c1ddcc",
+        "name": "",
+        "pin": "LED 0 / Relay 0",
+        "set": true,
+        "level": "0",
+        "x": 710,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "22d142ee.b80f2e",
+        "type": "rpi-piface in",
+        "z": "3424c35e.c1ddcc",
+        "name": "S4 - SUMP - LSH",
+        "pin": "Button S4",
+        "intype": "up",
+        "read": true,
+        "x": 100,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db3753d7.74e59",
+        "type": "rpi-piface out",
+        "z": "3424c35e.c1ddcc",
+        "name": "",
+        "pin": "LED 1 / Relay 1",
+        "set": true,
+        "level": "0",
+        "x": 1370,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "31c7515c.ed011e",
+        "type": "range",
+        "z": "3424c35e.c1ddcc",
+        "minin": "0",
+        "maxin": "1",
+        "minout": "1",
+        "maxout": "0",
+        "action": "scale",
+        "round": false,
+        "property": "payload",
+        "name": "",
+        "x": 470,
+        "y": 540,
+        "wires": [
+            [
+                "cb8d63f0.f7302",
+                "66bd404f.2a2cb"
+            ]
+        ]
+    },
+    {
+        "id": "500d8e2c.a4c97",
+        "type": "range",
+        "z": "3424c35e.c1ddcc",
+        "minin": "0",
+        "maxin": "1",
+        "minout": "1",
+        "maxout": "0",
+        "action": "scale",
+        "round": true,
+        "name": "",
+        "x": 470,
+        "y": 160,
+        "wires": [
+            [
+                "7e9ee75.3a94a18",
+                "7a4b7b95.466a84"
+            ]
+        ]
+    },
+    {
+        "id": "93fe58e8.5e8b68",
+        "type": "rpi-piface in",
+        "z": "3424c35e.c1ddcc",
+        "name": "S3 - SUMP - LSL",
+        "pin": "Button S3",
+        "intype": "up",
+        "read": true,
+        "x": 100,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "46ca9571.add0bc",
+        "type": "rpi-piface in",
+        "z": "3424c35e.c1ddcc",
+        "name": "S2 - SUMP TEST",
+        "pin": "Button S2",
+        "intype": "up",
+        "read": true,
+        "x": 100,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6048fbdc.91aaf4",
+        "type": "debug",
+        "z": "3424c35e.c1ddcc",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 950,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d44f9d37.15d64",
+        "type": "e-mail",
+        "z": "3424c35e.c1ddcc",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "name": "tpspav@ptd.net",
+        "dname": "",
+        "x": 960,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "ee1a72a8.b69a9",
+        "type": "rpi-piface out",
+        "z": "3424c35e.c1ddcc",
+        "name": "",
+        "pin": "LED 7",
+        "set": false,
+        "level": "0",
+        "x": 580,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "74fbb627.42d5e8",
+        "type": "inject",
+        "z": "3424c35e.c1ddcc",
+        "name": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "x": 90,
+        "y": 820,
+        "wires": [
+            [
+                "e01ab538.6b2928"
+            ]
+        ]
+    },
+    {
+        "id": "e01ab538.6b2928",
+        "type": "trigger",
+        "z": "3424c35e.c1ddcc",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "1",
+        "extend": false,
+        "units": "s",
+        "reset": "",
+        "name": "",
+        "x": 280,
+        "y": 820,
+        "wires": [
+            [
+                "ee1a72a8.b69a9"
+            ]
+        ]
+    },
+    {
+        "id": "93a9cced.1aa9e",
+        "type": "rpi-piface out",
+        "z": "3424c35e.c1ddcc",
+        "name": "",
+        "pin": "LED 6",
+        "set": true,
+        "level": "0",
+        "x": 960,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "4c608f8b.b6567",
+        "type": "rpi-piface out",
+        "z": "3424c35e.c1ddcc",
+        "name": "",
+        "pin": "LED 4",
+        "set": true,
+        "level": "0",
+        "x": 960,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "21fef2c2.17b5fe",
+        "type": "rpi-piface out",
+        "z": "3424c35e.c1ddcc",
+        "name": "",
+        "pin": "LED 5",
+        "set": true,
+        "level": "0",
+        "x": 960,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a0d81852.6cde48",
+        "type": "rpi-piface in",
+        "z": "3424c35e.c1ddcc",
+        "name": "PiFACE - Input 5 - SUMP - NORMAL",
+        "pin": "Input 5",
+        "intype": "up",
+        "read": true,
+        "x": 160,
+        "y": 400,
+        "wires": [
+            [
+                "69b23d8c.629664"
+            ]
+        ]
+    },
+    {
+        "id": "dec68a80.68d6e8",
+        "type": "rpi-piface in",
+        "z": "3424c35e.c1ddcc",
+        "name": "PiFACE - Input 6 - SUMP - LSL",
+        "pin": "Input 6",
+        "intype": "up",
+        "read": true,
+        "x": 150,
+        "y": 460,
+        "wires": [
+            [
+                "db7cc994.2b7628"
+            ]
+        ]
+    },
+    {
+        "id": "60a3e7f3.ebcff8",
+        "type": "rpi-piface in",
+        "z": "3424c35e.c1ddcc",
+        "name": "PiFACE - Input 7 - SUMP - LSH",
+        "pin": "Input 7",
+        "intype": "up",
+        "read": true,
+        "x": 150,
+        "y": 600,
+        "wires": [
+            [
+                "31c7515c.ed011e",
+                "59d49b1c.782fe4"
+            ]
+        ]
+    },
+    {
+        "id": "c3cb95c0.156368",
+        "type": "rpi-piface in",
+        "z": "3424c35e.c1ddcc",
+        "name": "PiFACE - Input 8 - SPARE",
+        "pin": "Input 8",
+        "intype": "up",
+        "read": true,
+        "x": 130,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "61170a59.217964",
+        "type": "trigger",
+        "z": "3424c35e.c1ddcc",
+        "op1": "",
+        "op2": "SUMP LEVEL RETURN TO NORMAL",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "5",
+        "extend": false,
+        "units": "s",
+        "reset": "0",
+        "name": "",
+        "x": 940,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7c9932e1.643d2c",
+        "type": "debug",
+        "z": "3424c35e.c1ddcc",
+        "name": "MSG.PAYLOAD.1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1350,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "40ca05d7.57b66c",
+        "type": "debug",
+        "z": "3424c35e.c1ddcc",
+        "name": "MSG.PAYLOAD.3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1350,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "5596b875.ca32c8",
+        "type": "inject",
+        "z": "3424c35e.c1ddcc",
+        "name": "",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 90,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "241755e9.47acea",
+        "type": "delay",
+        "z": "3424c35e.c1ddcc",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 940,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6fd3e51.d55d21c",
+        "type": "inject",
+        "z": "3424c35e.c1ddcc",
+        "name": "Inject @ 08:00 - Watchdog Message",
+        "topic": "",
+        "payload": "SUMP PUMP WATCHDOG @ 08:00",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "00 08 * * *",
+        "once": false,
+        "x": 190,
+        "y": 60,
+        "wires": [
+            [
+                "15e1efb1.bbe05"
+            ]
+        ]
+    },
+    {
+        "id": "15e1efb1.bbe05",
+        "type": "e-mail",
+        "z": "3424c35e.c1ddcc",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "name": "paul.valoret@gmail.com",
+        "dname": "",
+        "x": 530,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "e5ae841b.9d64e8",
+        "type": "inject",
+        "z": "3424c35e.c1ddcc",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 90,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3b5b256e.372efa",
+        "type": "debug",
+        "z": "3424c35e.c1ddcc",
+        "name": "MSG.PAYLOAD.2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1350,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "494402c1.8b348c",
+        "type": "function",
+        "z": "3424c35e.c1ddcc",
+        "name": "DEBOUNCE",
+        "func": "var latch;\nvar count;\n\nif (isNaN(count))\n{\n    count = 0;\n}\n\nif (msg.payload == \"ALARM\")\n{\n    latch = true;\n    count = count++;\n    msg.payload = true;\n    return [msg,null,null];\n} \nelse if (msg.payload == \"NORMAL\")\n{\n    latch = false;\n    msg.payload = false;\n    return [msg,null,null];\n}\nelse\n{\n    msg.payload = latch;\n    return [null,null,msg]\n}",
+        "outputs": 3,
+        "noerr": 0,
+        "x": 950,
+        "y": 580,
+        "wires": [
+            [
+                "274ae26e.bb74fe",
+                "db3753d7.74e59",
+                "9993e632.daabd8"
+            ],
+            [
+                "3f216666.51bc0a"
+            ],
+            [
+                "157a30ef.305ccf"
+            ]
+        ]
+    },
+    {
+        "id": "cb8d63f0.f7302",
+        "type": "trigger",
+        "z": "3424c35e.c1ddcc",
+        "op1": "",
+        "op2": "LSH - SUMP HIGH",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "5",
+        "extend": false,
+        "units": "s",
+        "reset": "0",
+        "bytopic": "all",
+        "name": "",
+        "x": 660,
+        "y": 520,
+        "wires": [
+            [
+                "9151a929.8ce168",
+                "f2000894.757f38"
+            ]
+        ]
+    },
+    {
+        "id": "274ae26e.bb74fe",
+        "type": "debug",
+        "z": "3424c35e.c1ddcc",
+        "name": "MSG.PAYLOAD.4",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 1350,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "61d1b7b3.0301a8",
+        "type": "trigger",
+        "z": "3424c35e.c1ddcc",
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "pay",
+        "duration": "2",
+        "extend": false,
+        "units": "s",
+        "reset": "0",
+        "name": "",
+        "x": 940,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3f216666.51bc0a",
+        "type": "debug",
+        "z": "3424c35e.c1ddcc",
+        "name": "MSG.PAYLOAD.5",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 1350,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "157a30ef.305ccf",
+        "type": "debug",
+        "z": "3424c35e.c1ddcc",
+        "name": "MSG.PAYLOAD.6",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1350,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "66bd404f.2a2cb",
+        "type": "trigger",
+        "z": "3424c35e.c1ddcc",
+        "op1": "",
+        "op2": "ALARM",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "5",
+        "extend": false,
+        "units": "s",
+        "reset": "0",
+        "bytopic": "all",
+        "name": "",
+        "x": 660,
+        "y": 560,
+        "wires": [
+            [
+                "494402c1.8b348c"
+            ]
+        ]
+    },
+    {
+        "id": "59d49b1c.782fe4",
+        "type": "trigger",
+        "z": "3424c35e.c1ddcc",
+        "op1": "",
+        "op2": "NORMAL",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "5",
+        "extend": false,
+        "units": "s",
+        "reset": "0",
+        "bytopic": "all",
+        "name": "",
+        "x": 660,
+        "y": 600,
+        "wires": [
+            [
+                "494402c1.8b348c",
+                "b6b1a5e2.005598"
+            ]
+        ]
+    },
+    {
+        "id": "b6b1a5e2.005598",
+        "type": "debug",
+        "z": "3424c35e.c1ddcc",
+        "name": "MSG.PAYLOAD.7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 970,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "69b23d8c.629664",
+        "type": "range",
+        "z": "3424c35e.c1ddcc",
+        "minin": "0",
+        "maxin": "1",
+        "minout": "1",
+        "maxout": "0",
+        "action": "scale",
+        "round": false,
+        "property": "payload",
+        "name": "",
+        "x": 470,
+        "y": 400,
+        "wires": [
+            [
+                "fbead22d.4b435"
+            ]
+        ]
+    },
+    {
+        "id": "fbead22d.4b435",
+        "type": "trigger",
+        "z": "3424c35e.c1ddcc",
+        "op1": "",
+        "op2": "SUMP OUT OF NORMAL RANGE",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "5",
+        "extend": false,
+        "units": "s",
+        "reset": "0",
+        "bytopic": "all",
+        "name": "",
+        "x": 660,
+        "y": 400,
+        "wires": [
+            [
+                "9151a929.8ce168",
+                "f2000894.757f38"
+            ]
+        ]
+    },
+    {
+        "id": "9993e632.daabd8",
+        "type": "ui_button",
+        "z": "3424c35e.c1ddcc",
+        "name": "",
+        "group": "5beb499a.097e88",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "LSH",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 1310,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db7cc994.2b7628",
+        "type": "range",
+        "z": "3424c35e.c1ddcc",
+        "minin": "0",
+        "maxin": "1",
+        "minout": "1",
+        "maxout": "0",
+        "action": "scale",
+        "round": false,
+        "property": "payload",
+        "name": "",
+        "x": 470,
+        "y": 460,
+        "wires": [
+            [
+                "4f04fd17.72c974"
+            ]
+        ]
+    },
+    {
+        "id": "4f04fd17.72c974",
+        "type": "trigger",
+        "z": "3424c35e.c1ddcc",
+        "op1": "",
+        "op2": "LSL - SUMP LOW",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "5",
+        "extend": false,
+        "units": "s",
+        "reset": "0",
+        "bytopic": "all",
+        "name": "",
+        "x": 660,
+        "y": 460,
+        "wires": [
+            [
+                "9151a929.8ce168",
+                "f2000894.757f38"
+            ]
+        ]
+    },
+    {
+        "id": "9151a929.8ce168",
+        "type": "e-mail",
+        "z": "3424c35e.c1ddcc",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "name": "paul.valoret@gmail.com",
+        "dname": "",
+        "x": 990,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "4229004b.85b6c",
+        "type": "ui_form",
+        "z": "3424c35e.c1ddcc",
+        "name": "",
+        "label": "",
+        "group": "5beb499a.097e88",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Item 1",
+                "value": "the Item",
+                "type": "text",
+                "required": true
+            }
+        ],
+        "formValue": {
+            "the Item": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 930,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f2000894.757f38",
+        "type": "ui_text",
+        "z": "3424c35e.c1ddcc",
+        "group": "5beb499a.097e88",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 930,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "5beb499a.097e88",
+        "type": "ui_group",
+        "z": "",
+        "name": "Default",
+        "tab": "3793ad7e.158b12",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "3793ad7e.158b12",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard"
+    }
+]
